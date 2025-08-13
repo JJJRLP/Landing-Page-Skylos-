@@ -200,7 +200,7 @@ const PhotographyBanner: React.FC = () => {
           position: absolute;
           content: "";
           left: 0;
-          bottom: 6px;
+          bottom: -2px;
           width: 100%;
           height: 3px;
           background-color: #ffffff;
@@ -1226,31 +1226,31 @@ const PhotographyBanner: React.FC = () => {
             <div className="section-container">
               <div className="advantages-grid">
                 <div className="advantage-item">
-                  <span className="advantage-metric">75%</span>
-                  <h3 className="advantage-title">IMPLEMENTATION COST SAVINGS</h3>
+                  <span className="advantage-metric">40%</span>
+                  <h3 className="advantage-title">PRODUCTIVITY INCREASE</h3>
                   <p className="advantage-description">
-                    Up to 75% savings on implementation costs compared to traditional enterprise AI solutions
+                    Businesses report 40% productivity gains through intelligent task automation and AI-driven workflows
                   </p>
                 </div>
                 <div className="advantage-item">
-                  <span className="advantage-metric">60%</span>
-                  <h3 className="advantage-title">LOWER MAINTENANCE COSTS</h3>
+                  <span className="advantage-metric">65%</span>
+                  <h3 className="advantage-title">OPERATIONAL COST REDUCTION</h3>
                   <p className="advantage-description">
-                    60% lower monthly maintenance costs with our streamlined, efficient AI architecture
+                    AI automation reduces operational costs by up to 65% by eliminating repetitive manual processes
                   </p>
                 </div>
                 <div className="advantage-item">
-                  <span className="advantage-metric">10x</span>
-                  <h3 className="advantage-title">FASTER DEPLOYMENT</h3>
+                  <span className="advantage-metric">24/7</span>
+                  <h3 className="advantage-title">AUTONOMOUS OPERATIONS</h3>
                   <p className="advantage-description">
-                    10x faster deployment with a time-to-value of just 2-4 weeks instead of months
+                    Agentic AI systems work continuously, handling complex decision-making without human intervention
                   </p>
                 </div>
                 <div className="advantage-item">
-                  <span className="advantage-metric">100%</span>
-                  <h3 className="advantage-title">FULLY CUSTOMIZED</h3>
+                  <span className="advantage-metric">85%</span>
+                  <h3 className="advantage-title">ERROR REDUCTION</h3>
                   <p className="advantage-description">
-                    Fully customized solutions, not limited templates - built specifically for your business needs
+                    AI-powered automation reduces human errors by 85%, improving accuracy and compliance across operations
                   </p>
                 </div>
               </div>
@@ -1259,7 +1259,7 @@ const PhotographyBanner: React.FC = () => {
                   OUR COMPETITIVE <span className="highlight">ADVANTAGES</span>
                 </h2>
                 <p className="section-description">
-                  Our approach offers significant competitive advantages over traditional AI implementation methods, delivering faster results at lower costs.
+                  Agentic AI transforms businesses by creating autonomous systems that think, decide, and act independently, delivering unprecedented efficiency and competitive advantage.
                 </p>
               </div>
             </div>
@@ -1277,7 +1277,7 @@ const PhotographyBanner: React.FC = () => {
                   Request Free Consultation
                 </a>
                 <a href="#" className="cta-button secondary">
-                  Join our Whitelsit
+                  Join our Whitelist!
                 </a>
               </div>
               <p style={{ color: '#b39ddb', fontSize: '16px', marginTop: '30px', textAlign: 'center' }}>

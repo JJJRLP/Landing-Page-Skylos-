@@ -55,7 +55,10 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
           left: 0;
           right: 0;
           z-index: 50;
-          background: transparent;
+          background: rgba(15, 20, 25, 0.8);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .nav-container {
@@ -291,13 +294,12 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
               <X size={24} />
             </button>
           </div>
-          
+
           <div className="mobile-menu-content">
             <button className="mobile-auth-button" onClick={handleLoginClick}>
               Log In
             </button>
             <button className="mobile-auth-button" onClick={handleSignUpClick}>
-              Sign Up
             </button>
           </div>
         </div>
