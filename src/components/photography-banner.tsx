@@ -965,6 +965,160 @@ const PhotographyBanner: React.FC = () => {
           border: 2px solid #7a288a;
         }
 
+        /* Team Section Styles */
+        .team-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 40px;
+          align-items: stretch;
+        }
+
+        .team-member {
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 20px;
+          backdrop-filter: blur(10px);
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          min-height: 350px;
+        }
+
+        .team-member::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: linear-gradient(90deg, #7a288a, #b39ddb);
+          transform: scaleX(0);
+          transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+          background: rgba(255, 255, 255, 0.05);
+          border-color: #7a288a;
+          transform: translateY(-5px);
+        }
+
+        .team-member:hover::before {
+          transform: scaleX(1);
+        }
+
+        .member-image-placeholder {
+          height: 200px;
+          background: linear-gradient(135deg, #7a288a, #b39ddb);
+          border-radius: 20px 20px 0 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .placeholder-content {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.2);
+        }
+
+        .placeholder-text {
+          color: #ffffff;
+          font-family: "Lexend", sans-serif;
+          font-weight: 500;
+          font-size: 18px;
+          opacity: 0.8;
+        }
+
+        .member-image-placeholder::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+          transform: translateX(-100%);
+          transition: transform 0.6s ease;
+        }
+
+        .team-member:hover .member-image-placeholder::before {
+          transform: translateX(100%);
+        }
+
+        .member-content {
+          padding: 30px 25px;
+          text-align: center;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .member-name {
+          color: #ffffff;
+          font-family: "Lexend", sans-serif;
+          font-weight: 600;
+          font-size: 22px;
+          margin: 0 0 8px;
+          text-align: center;
+        }
+
+        .member-position {
+          color: #b39ddb;
+          font-family: "Lexend", sans-serif;
+          font-weight: 500;
+          font-size: 16px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin: 0 0 40px;
+          text-align: center;
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .member-links {
+          display: flex;
+          justify-content: center;
+          gap: 15px;
+          margin-top: auto;
+        }
+
+        .member-link {
+          width: 40px;
+          height: 40px;
+          background: rgba(122, 40, 138, 0.1);
+          border: 1px solid rgba(122, 40, 138, 0.3);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #7a288a;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          font-family: "Lexend", sans-serif;
+          font-weight: 600;
+        }
+
+        .member-link:hover {
+          background: #7a288a;
+          color: #ffffff;
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(122, 40, 138, 0.3);
+        }
+
+        .link-icon {
+          font-size: 14px;
+          font-weight: 600;
+        }
+
         /* Responsive adjustments for professional sections */
         @media screen and (max-width: 1199px) {
           .professional-section {
@@ -976,6 +1130,9 @@ const PhotographyBanner: React.FC = () => {
           .benefits-grid,
           .advantages-grid {
             gap: 20px;
+          }
+          .team-grid {
+            gap: 30px;
           }
           .cta-buttons {
             gap: 20px;
@@ -994,7 +1151,8 @@ const PhotographyBanner: React.FC = () => {
             direction: ltr;
           }
           .benefits-grid,
-          .advantages-grid {
+          .advantages-grid,
+          .team-grid {
             grid-template-columns: 1fr;
             gap: 20px;
           }
@@ -1013,8 +1171,34 @@ const PhotographyBanner: React.FC = () => {
           .advantage-item {
             padding: 25px 20px;
           }
+          .team-member {
+            min-height: 320px;
+          }
           .advantage-metric {
             font-size: 36px;
+          }
+          .member-image-placeholder {
+            height: 160px;
+          }
+          .placeholder-text {
+            font-size: 16px;
+          }
+          .member-content {
+            padding: 25px 20px;
+          }
+          .member-name {
+            font-size: 20px;
+          }
+          .member-position {
+            font-size: 14px;
+            margin: 0 0 30px;
+          }
+          .member-links {
+            gap: 12px;
+          }
+          .member-link {
+            width: 40px;
+            height: 40px;
           }
           .cta-buttons {
             flex-direction: column;
@@ -1099,7 +1283,7 @@ const PhotographyBanner: React.FC = () => {
                   THE PROBLEM <span className="highlight">WHY AI IS NO LONGER AN OPTION</span>
                 </h2>
                 <p className="section-description">
-                  Your competitors are already ahead. Every day without AI automation means lost efficiency, higher costs, and falling behind. 
+                  Your competitors are already ahead. Every day without AI automation means lost efficiency, higher costs, and falling behind.
                   While 73% of businesses have adopted AI, those just starting face a 6-month delay and critical operational gaps.
                 </p>
               </div>
@@ -1174,7 +1358,7 @@ const PhotographyBanner: React.FC = () => {
                   THE SOLUTION <span className="highlight">CUSTOM CONVERSATIONAL AI</span>
                 </h2>
                 <p className="section-description">
-                  Our conversational AI solutions help you move beyond basic automation with intelligent agents that understand context, 
+                  Our conversational AI solutions help you move beyond basic automation with intelligent agents that understand context,
                   learn from interactions, and deliver personalized experiences at scale.
                 </p>
               </div>
@@ -1265,6 +1449,80 @@ const PhotographyBanner: React.FC = () => {
             </div>
           </section>
 
+          {/* Meet Our Team Section */}
+          <section className="professional-section dark">
+            <div className="section-container">
+              <div className="section-content">
+                <h2 className="section-title">
+                  MEET OUR <span className="highlight">TEAM</span>
+                </h2>
+                <p className="section-description">
+                  The visionaries behind your AI transformation. Our leadership team combines decades of experience in technology,
+                  operations, and business strategy to deliver cutting-edge AI solutions.
+                </p>
+              </div>
+              <div className="team-grid">
+                <div className="team-member">
+                  <div className="member-image-placeholder">
+                    <div className="placeholder-content">
+                      <span className="placeholder-text">Photo</span>
+                    </div>
+                  </div>
+                  <div className="member-content">
+                    <h3 className="member-name">Manuel Elias</h3>
+                    <p className="member-position">CEO</p>
+                    <div className="member-links">
+                      <a href="mailto:[email]" className="member-link" aria-label="Email CEO">
+                        <span className="link-icon">✉</span>
+                      </a>
+                      <a href="https://linkedin.com/in/[linkedin]" className="member-link" aria-label="LinkedIn Profile">
+                        <span className="link-icon">in</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div className="team-member">
+                  <div className="member-image-placeholder">
+                    <div className="placeholder-content">
+                      <span className="placeholder-text">Photo</span>
+                    </div>
+                  </div>
+                  <div className="member-content">
+                    <h3 className="member-name">Claudio Condor</h3>
+                    <p className="member-position">CTO</p>
+                    <div className="member-links">
+                      <a href="mailto:[email]" className="member-link" aria-label="Email CTO">
+                        <span className="link-icon">✉</span>
+                      </a>
+                      <a href="https://linkedin.com/in/[linkedin]" className="member-link" aria-label="LinkedIn Profile">
+                        <span className="link-icon">in</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div className="team-member">
+                  <div className="member-image-placeholder">
+                    <div className="placeholder-content">
+                      <span className="placeholder-text">Photo</span>
+                    </div>
+                  </div>
+                  <div className="member-content">
+                    <h3 className="member-name">Jhonny Lopez</h3>
+                    <p className="member-position">COO</p>
+                    <div className="member-links">
+                      <a href="mailto:[email]" className="member-link" aria-label="Email COO">
+                        <span className="link-icon">✉</span>
+                      </a>
+                      <a href="https://linkedin.com/in/[linkedin]" className="member-link" aria-label="LinkedIn Profile">
+                        <span className="link-icon">in</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* CTA Section */}
           <section className="cta-section">
             <div className="cta-container">
@@ -1281,7 +1539,7 @@ const PhotographyBanner: React.FC = () => {
                 </a>
               </div>
               <p style={{ color: '#b39ddb', fontSize: '16px', marginTop: '30px', textAlign: 'center' }}>
-                We&apos;re accepting a limited number of businesses for our fully customizable AI agents. 
+                We&apos;re accepting a limited number of businesses for our fully customizable AI agents.
                 Join a select group transforming their operations with AI.
               </p>
             </div>
