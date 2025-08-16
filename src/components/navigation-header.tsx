@@ -191,7 +191,7 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
           top: 0;
           left: 0;
           right: 0;
-          height: 70px;
+          height: 60px;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -254,9 +254,27 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
         
         /* Responsive breakpoints */
         @media screen and (max-width: 767px) {
+          .navigation-header {
+            background: transparent;
+            border-bottom: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+          }
+          
+          .navigation-header.scrolled {
+            background: rgba(15, 20, 25, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+          }
+          
           .nav-container {
-            height: 70px;
+            height: 60px;
             padding: 0 16px;
+            justify-content: flex-end;
+          }
+          
+          .brand {
+            display: none;
           }
           
           .desktop-nav {
@@ -265,6 +283,15 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
           
           .mobile-menu-toggle {
             display: block;
+            padding: 12px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+          }
+          
+          .mobile-menu-toggle:hover {
+            background: rgba(122, 40, 138, 0.2);
           }
         }
         
@@ -322,6 +349,7 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
               Log In
             </button>
             <button className="mobile-auth-button" onClick={handleSignUpClick}>
+              Sign Up
             </button>
           </div>
         </div>

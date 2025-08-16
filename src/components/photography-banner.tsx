@@ -144,7 +144,7 @@ const PhotographyBanner: React.FC = () => {
           position: relative;
           flex: 1;
           max-width: 80%;
-          min-width: 900px;
+          width: 100%;
         }
 
         .left-part h1 {
@@ -166,8 +166,7 @@ const PhotographyBanner: React.FC = () => {
           height: clamp(120px, 18vw, 160px);
           margin-top: 10px;
           width: 100%;
-          min-width: 900px;
-          padding-right: 200px;
+          padding-right: clamp(50px, 15vw, 200px);
           white-space: nowrap;
           overflow: visible;
         }
@@ -520,9 +519,9 @@ const PhotographyBanner: React.FC = () => {
           
           .info-section {
             display: block;
-            padding: 0;
-            overflow: visible;
-            min-height: auto;
+            padding: 80px 0 40px;
+            overflow: hidden;
+            min-height: 100vh;
             height: auto;
           }
           
@@ -531,35 +530,53 @@ const PhotographyBanner: React.FC = () => {
           }
           
           .left-part {
-            padding: 40px 16px 60px;
-            overflow: visible;
-            min-width: 350px;
-            max-width: 90%;
+            padding: 20px 16px 40px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 100%;
+            text-align: left;
           }
           
           .right-part {
-            height: 334px;
-            width: 334px;
+            height: 250px;
+            width: 250px;
             margin: 0 auto;
-            margin-right: auto;
+          }
+          
+          .left-part h1 {
+            font-size: clamp(40px, 10vw, 60px);
+            line-height: 0.9;
           }
           
           .left-part h1 .text {
-            height: 100px;
+            height: clamp(80px, 15vw, 120px);
             margin-top: 8px;
-            min-width: 350px;
-            padding-right: 50px;
+            width: 100%;
+            padding-right: 20px;
             white-space: nowrap;
-            overflow: visible;
+            overflow: hidden;
           }
           
           .left-part p {
-            font-size: 12px;
-            width: 96%;
+            font-size: 15px;
+            width: 90%;
+            line-height: 1.6;
+            margin: 20px 0;
+          }
+          
+          .book-link {
+            font-size: clamp(32px, 7vw, 44px);
+            gap: 20px;
+            margin: 30px 0 0;
+          }
+          
+          .book-link .arrow {
+            height: 30px;
+            width: 30px;
           }
           
           .bg-dash-circle {
-            width: 80px;
+            width: 70px;
           }
         }
 
@@ -568,6 +585,12 @@ const PhotographyBanner: React.FC = () => {
           padding: 120px 30px;
           position: relative;
           overflow: hidden;
+        }
+        
+        @media screen and (max-width: 767px) {
+          .professional-section {
+            padding: 60px 16px;
+          }
         }
 
         .professional-section.dark {
@@ -600,6 +623,14 @@ const PhotographyBanner: React.FC = () => {
           gap: 80px;
           align-items: center;
         }
+        
+        @media screen and (max-width: 767px) {
+          .section-container {
+            grid-template-columns: 1fr;
+            gap: 40px;
+            padding: 0 16px;
+          }
+        }
 
         .section-container.reverse {
           direction: rtl;
@@ -622,6 +653,15 @@ const PhotographyBanner: React.FC = () => {
           margin: 0 0 30px;
           text-transform: uppercase;
         }
+        
+        @media screen and (max-width: 767px) {
+          .section-title {
+            font-size: clamp(28px, 8vw, 48px);
+            line-height: 1.2;
+            margin: 0 0 20px;
+            text-align: center;
+          }
+        }
 
         .section-title .highlight {
           color: #b39ddb;
@@ -635,11 +675,27 @@ const PhotographyBanner: React.FC = () => {
           margin: 0 0 40px;
           font-weight: 300;
         }
+        
+        @media screen and (max-width: 767px) {
+          .section-description {
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0 0 30px;
+            text-align: center;
+          }
+        }
 
         .benefits-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 30px;
+        }
+        
+        @media screen and (max-width: 767px) {
+          .benefits-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
         }
 
         .benefit-item {
@@ -650,6 +706,12 @@ const PhotographyBanner: React.FC = () => {
           position: relative;
           backdrop-filter: blur(10px);
           transition: all 0.3s ease;
+        }
+        
+        @media screen and (max-width: 767px) {
+          .benefit-item {
+            padding: 25px 20px;
+          }
         }
 
         .benefit-item:hover {
@@ -707,6 +769,13 @@ const PhotographyBanner: React.FC = () => {
           backdrop-filter: blur(10px);
           transition: all 0.3s ease;
         }
+        
+        @media screen and (max-width: 767px) {
+          .process-step {
+            padding: 20px;
+            gap: 20px;
+          }
+        }
 
         .process-step:hover {
           background: rgba(255, 255, 255, 0.05);
@@ -758,6 +827,13 @@ const PhotographyBanner: React.FC = () => {
           grid-template-columns: 1fr 1fr;
           gap: 25px;
         }
+        
+        @media screen and (max-width: 767px) {
+          .advantages-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+        }
 
         .advantage-item {
           text-align: center;
@@ -767,6 +843,12 @@ const PhotographyBanner: React.FC = () => {
           border-radius: 16px;
           backdrop-filter: blur(10px);
           transition: all 0.3s ease;
+        }
+        
+        @media screen and (max-width: 767px) {
+          .advantage-item {
+            padding: 30px 20px;
+          }
         }
 
         .advantage-item:hover {
@@ -808,6 +890,12 @@ const PhotographyBanner: React.FC = () => {
           background-color: #0f1419;
           position: relative;
           overflow: hidden;
+        }
+        
+        @media screen and (max-width: 767px) {
+          .testimonials-section {
+            padding: 60px 16px;
+          }
         }
 
         .testimonials-section::before {
@@ -872,6 +960,13 @@ const PhotographyBanner: React.FC = () => {
           width: 400px;
           flex-shrink: 0;
         }
+        
+        @media screen and (max-width: 767px) {
+          .testimonial-card {
+            width: 300px;
+            padding: 30px 20px;
+          }
+        }
 
         .testimonial-quote {
           color: #fff;
@@ -924,6 +1019,12 @@ const PhotographyBanner: React.FC = () => {
           position: relative;
           overflow: hidden;
         }
+        
+        @media screen and (max-width: 767px) {
+          .cta-section {
+            padding: 60px 16px;
+          }
+        }
 
         .cta-section::before {
           content: "";
@@ -972,6 +1073,14 @@ const PhotographyBanner: React.FC = () => {
           justify-content: center;
           flex-wrap: wrap;
         }
+        
+        @media screen and (max-width: 767px) {
+          .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+          }
+        }
 
         .cta-button {
           padding: 18px 40px;
@@ -1010,6 +1119,20 @@ const PhotographyBanner: React.FC = () => {
           grid-template-columns: repeat(3, 1fr);
           gap: 40px;
           align-items: stretch;
+        }
+        
+        @media screen and (max-width: 1199px) {
+          .team-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+          }
+        }
+        
+        @media screen and (max-width: 767px) {
+          .team-grid {
+            grid-template-columns: 1fr;
+            gap: 25px;
+          }
         }
 
         .team-member {

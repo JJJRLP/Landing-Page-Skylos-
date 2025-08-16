@@ -1,36 +1,19 @@
-import { Facebook, Instagram, Twitter, Github, Mail, MapPin, Phone } from "lucide-react"
+import { Facebook, Instagram, Twitter, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react"
 
 const data = {
-  facebookLink: "https://facebook.com/aibuilders",
-  instaLink: "https://instagram.com/aibuilders",
-  twitterLink: "https://twitter.com/aibuilders",
-  githubLink: "https://github.com/aibuilders",
-  services: {
-    ml: "/machine-learning",
-    cv: "/computer-vision",
-    llm: "/large-language-models",
-    automation: "/ai-automation",
-  },
-  about: {
-    story: "/our-story",
-    instructors: "/meet-instructors",
-    curriculum: "/curriculum",
-    careers: "/careers",
-  },
-  help: {
-    faqs: "/faqs",
-    support: "/support",
-    community: "/community",
-  },
+  facebookLink: "https://facebook.com/skylos",
+  instaLink: "https://instagram.com/skylos",
+  twitterLink: "https://twitter.com/skylos",
+  githubLink: "https://github.com/skylos",
+  linkedinLink: "https://linkedin.com/company/skylos",
   contact: {
-    email: "hello@aibuilders.com",
+    email: "hello@skylos.ai",
     phone: "+1 (555) 123-4567",
-    address: "Dublin, Ireland",
+    address: "San Francisco, CA",
   },
   company: {
-    name: "AI Builders",
-    description:
-      "We create classes every month with our talented AI builders. Transform your skills with cutting-edge AI education and hands-on projects.",
+    name: "Skylos",
+    ctaMessage: "Transform your business with proper AI solutions. We specialize in building intelligent applications that drive real results.",
   },
 }
 
@@ -38,28 +21,11 @@ const socialLinks = [
   { icon: Facebook, label: "Facebook", href: data.facebookLink },
   { icon: Instagram, label: "Instagram", href: data.instaLink },
   { icon: Twitter, label: "Twitter", href: data.twitterLink },
+  { icon: Linkedin, label: "LinkedIn", href: data.linkedinLink },
   { icon: Github, label: "GitHub", href: data.githubLink },
 ]
 
-const aboutLinks = [
-  { text: "Our Story", href: data.about.story },
-  { text: "Meet Instructors", href: data.about.instructors },
-  { text: "Curriculum", href: data.about.curriculum },
-  { text: "Careers", href: data.about.careers },
-]
 
-const serviceLinks = [
-  { text: "Machine Learning", href: data.services.ml },
-  { text: "Computer Vision", href: data.services.cv },
-  { text: "Large Language Models", href: data.services.llm },
-  { text: "AI Automation", href: data.services.automation },
-]
-
-const helpfulLinks = [
-  { text: "FAQs", href: data.help.faqs },
-  { text: "Support", href: data.help.support },
-  { text: "Community", href: data.help.community, hasIndicator: true },
-]
 
 const contactInfo = [
   { icon: Mail, text: data.contact.email },
@@ -115,7 +81,7 @@ export default function Footer() {
 
         .footer-grid {
           display: grid;
-          grid-template-columns: 1fr 2fr;
+          grid-template-columns: 1fr 1fr;
           gap: 80px;
           margin-bottom: 60px;
         }
@@ -156,11 +122,12 @@ export default function Footer() {
 
         .brand-description {
           font-family: "Lexend";
-          font-size: 16px;
-          line-height: 1.8;
-          color: #aaa;
+          font-size: 18px;
+          line-height: 1.6;
+          color: #ffffff;
           margin-bottom: 40px;
-          max-width: 400px;
+          max-width: 500px;
+          font-weight: 500;
         }
 
         .social-links {
@@ -188,10 +155,101 @@ export default function Footer() {
           transform: translateY(-2px);
         }
 
-        .footer-links {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 40px;
+        .footer-contact {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .contact-title {
+          font-family: "Lexend", sans-serif;
+          font-weight: 700;
+          font-size: 24px;
+          color: #ffffff;
+          margin-bottom: 30px;
+        }
+
+        .contact-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .contact-list-item {
+          margin-bottom: 20px;
+        }
+
+        .contact-form {
+          background: rgba(122, 40, 138, 0.1);
+          border: 1px solid #333;
+          border-radius: 12px;
+          padding: 30px;
+          margin-top: 20px;
+        }
+
+        .form-title {
+          font-family: "Lexend", sans-serif;
+          font-weight: 600;
+          font-size: 18px;
+          color: #ffffff;
+          margin-bottom: 20px;
+        }
+
+        .form-group {
+          margin-bottom: 20px;
+        }
+
+        .form-label {
+          font-family: "Lexend", sans-serif;
+          font-size: 14px;
+          color: #b39ddb;
+          margin-bottom: 8px;
+          display: block;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+          width: 100%;
+          padding: 12px 16px;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid #444;
+          border-radius: 8px;
+          color: #ffffff;
+          font-family: "Lexend", sans-serif;
+          font-size: 14px;
+          transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+          outline: none;
+          border-color: #7a288a;
+          background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-textarea {
+          resize: vertical;
+          min-height: 100px;
+        }
+
+        .form-submit {
+          width: 100%;
+          padding: 14px 20px;
+          background: #7a288a;
+          border: none;
+          border-radius: 8px;
+          color: #ffffff;
+          font-family: "Lexend", sans-serif;
+          font-weight: 600;
+          font-size: 14px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .form-submit:hover {
+          background: #8e2a9e;
+          transform: translateY(-1px);
         }
 
         .link-column h3 {
@@ -342,10 +400,7 @@ export default function Footer() {
             gap: 60px;
           }
           
-          .footer-links {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-          }
+
         }
 
         @media screen and (max-width: 767px) {
@@ -397,10 +452,10 @@ export default function Footer() {
           <div className="footer-grid">
             <div className="footer-brand">
               <div className="brand-logo">
-                <div className="brand-icon">AI</div>
+                <div className="brand-icon">S</div>
                 <span className="brand-name">{data.company.name}</span>
               </div>
-              <p className="brand-description">{data.company.description}</p>
+              <p className="brand-description">{data.company.ctaMessage}</p>
               <div className="social-links">
                 {socialLinks.map(({ icon: Icon, label, href }) => (
                   <a key={label} href={href} className="social-link" aria-label={label}>
@@ -410,69 +465,82 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="footer-links">
-              <div className="link-column">
-                <h3>About Us</h3>
-                <ul className="link-list">
-                  {aboutLinks.map(({ text, href }) => (
-                    <li key={text} className="link-item">
-                      <a href={href}>{text}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="link-column">
-                <h3>AI Courses</h3>
-                <ul className="link-list">
-                  {serviceLinks.map(({ text, href }) => (
-                    <li key={text} className="link-item">
-                      <a href={href}>{text}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="link-column">
-                <h3>Resources</h3>
-                <ul className="link-list">
-                  {helpfulLinks.map(({ text, href, hasIndicator }) => (
-                    <li key={text} className="link-item">
-                      <a href={href}>
-                        {hasIndicator ? (
-                          <span className="live-indicator">
-                            {text}
-                            <span className="pulse-dot"></span>
-                          </span>
-                        ) : (
-                          text
-                        )}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="link-column">
-                <h3>Contact Us</h3>
-                <ul className="link-list">
-                  {contactInfo.map(({ icon: Icon, text, isAddress }) => (
-                    <li key={text} className="link-item">
-                      <a href="#" className="contact-item">
-                        <Icon className="contact-icon" size={20} />
-                        {isAddress ? <address style={{ fontStyle: "normal" }}>{text}</address> : <span>{text}</span>}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+            <div className="footer-contact">
+              <h2 className="contact-title">Get In Touch</h2>
+              <ul className="contact-list">
+                {contactInfo.map(({ icon: Icon, text, isAddress }) => (
+                  <li key={text} className="contact-list-item">
+                    <div className="contact-item">
+                      <Icon className="contact-icon" size={20} />
+                      {isAddress ? <address style={{ fontStyle: "normal" }}>{text}</address> : <span>{text}</span>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              
+              <div className="contact-form">
+                <h3 className="form-title">Tell us about your AI challenge</h3>
+                <form>
+                  <div className="form-group">
+                    <label className="form-label" htmlFor="name">Name</label>
+                    <input 
+                      type="text" 
+                      id="name" 
+                      name="name" 
+                      className="form-input" 
+                      placeholder="Your name"
+                      required 
+                    />
+                  </div>
+                  
+                  <div className="form-group">
+                    <label className="form-label" htmlFor="email">Email</label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      name="email" 
+                      className="form-input" 
+                      placeholder="your@email.com"
+                      required 
+                    />
+                  </div>
+                  
+                  <div className="form-group">
+                    <label className="form-label" htmlFor="business-type">Business Type</label>
+                    <select id="business-type" name="business-type" className="form-select" required>
+                      <option value="">Select your industry</option>
+                      <option value="healthcare">Healthcare</option>
+                      <option value="finance">Finance</option>
+                      <option value="retail">Retail & E-commerce</option>
+                      <option value="manufacturing">Manufacturing</option>
+                      <option value="technology">Technology</option>
+                      <option value="education">Education</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  
+                  <div className="form-group">
+                    <label className="form-label" htmlFor="challenge">What's your AI challenge?</label>
+                    <textarea 
+                      id="challenge" 
+                      name="challenge" 
+                      className="form-textarea" 
+                      placeholder="Describe the business problem you'd like to solve with AI..."
+                      required
+                    ></textarea>
+                  </div>
+                  
+                  <button type="submit" className="form-submit">
+                    Get AI Solution Proposal
+                  </button>
+                </form>
               </div>
             </div>
           </div>
 
           <div className="footer-bottom">
             <p className="copyright">
-              &copy; 2025 made with 💛 by <a href="https://x.com/nocheerleader">nocheerleader</a> and inspired by 
-               <a href="https://instalanding.ai/"> instalanding.ai</a>
+              &copy; 2025 {data.company.name}. All rights reserved.
             </p>
             <div className="footer-legal">
               <a href="/privacy">Privacy Policy</a>
