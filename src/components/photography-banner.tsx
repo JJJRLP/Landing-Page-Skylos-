@@ -2,11 +2,23 @@
 
 import type React from "react"
 import { useState, useEffect } from "react"
+import { 
+  ExclamationTriangleIcon,
+  ClockIcon,
+  ArrowTrendingUpIcon,
+  CurrencyDollarIcon,
+  ClockIcon as Clock24Icon,
+  ArrowPathIcon,
+  CpuChipIcon,
+  EnvelopeIcon,
+  BuildingOffice2Icon
+} from '@heroicons/react/24/outline'
 
 const PhotographyBanner: React.FC = () => {
   const [currentText, setCurrentText] = useState("")
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isDeleting, setIsDeleting] = useState(false)
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set())
 
   const texts = ["implement", "deploy", "automate", "scale"]
 
@@ -37,6 +49,33 @@ const PhotographyBanner: React.FC = () => {
 
     return () => clearTimeout(timer)
   }, [currentText, currentIndex, isDeleting, texts])
+
+  // Scroll trigger effect for sections
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.getAttribute('data-section')
+          if (sectionId) {
+            setVisibleSections(prev => new Set([...prev, sectionId]))
+          }
+        }
+      })
+    }, observerOptions)
+
+    // Observe all sections with data-section attribute
+    const sections = document.querySelectorAll('[data-section]')
+    sections.forEach(section => observer.observe(section))
+
+    return () => {
+      sections.forEach(section => observer.unobserve(section))
+    }
+  }, [])
 
   return (
     <>
@@ -1119,6 +1158,86 @@ const PhotographyBanner: React.FC = () => {
           font-weight: 600;
         }
 
+        /* Scroll Animation Styles */
+        .scroll-section {
+          opacity: 0;
+          transform: translateY(50px);
+          transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .scroll-section.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .scroll-section.slide-left {
+          transform: translateX(-50px);
+        }
+
+        .scroll-section.slide-left.visible {
+          transform: translateX(0);
+        }
+
+        .scroll-section.slide-right {
+          transform: translateX(50px);
+        }
+
+        .scroll-section.slide-right.visible {
+          transform: translateX(0);
+        }
+
+        .scroll-section.fade-up {
+          transform: translateY(80px);
+        }
+
+        .scroll-section.fade-up.visible {
+          transform: translateY(0);
+        }
+
+        .scroll-section.scale-up {
+          transform: scale(0.9) translateY(30px);
+        }
+
+        .scroll-section.scale-up.visible {
+          transform: scale(1) translateY(0);
+        }
+
+        /* Staggered animations for grid items */
+        .benefit-item,
+        .advantage-item,
+        .team-member,
+        .process-step {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .scroll-section.visible .benefit-item,
+        .scroll-section.visible .advantage-item,
+        .scroll-section.visible .team-member,
+        .scroll-section.visible .process-step {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .scroll-section.visible .benefit-item:nth-child(1) { transition-delay: 0.1s; }
+        .scroll-section.visible .benefit-item:nth-child(2) { transition-delay: 0.2s; }
+        .scroll-section.visible .benefit-item:nth-child(3) { transition-delay: 0.3s; }
+        .scroll-section.visible .benefit-item:nth-child(4) { transition-delay: 0.4s; }
+
+        .scroll-section.visible .advantage-item:nth-child(1) { transition-delay: 0.1s; }
+        .scroll-section.visible .advantage-item:nth-child(2) { transition-delay: 0.2s; }
+        .scroll-section.visible .advantage-item:nth-child(3) { transition-delay: 0.3s; }
+        .scroll-section.visible .advantage-item:nth-child(4) { transition-delay: 0.4s; }
+
+        .scroll-section.visible .team-member:nth-child(1) { transition-delay: 0.1s; }
+        .scroll-section.visible .team-member:nth-child(2) { transition-delay: 0.2s; }
+        .scroll-section.visible .team-member:nth-child(3) { transition-delay: 0.3s; }
+
+        .scroll-section.visible .process-step:nth-child(1) { transition-delay: 0.1s; }
+        .scroll-section.visible .process-step:nth-child(2) { transition-delay: 0.2s; }
+        .scroll-section.visible .process-step:nth-child(3) { transition-delay: 0.3s; }
+
         /* Responsive adjustments for professional sections */
         @media screen and (max-width: 1199px) {
           .professional-section {
@@ -1276,7 +1395,10 @@ const PhotographyBanner: React.FC = () => {
           </section>
 
           {/* Problem Section */}
-          <section className="professional-section dark">
+          <section 
+            className={`professional-section dark scroll-section fade-up ${visibleSections.has('problem') ? 'visible' : ''}`}
+            data-section="problem"
+          >
             <div className="section-container">
               <div className="section-content">
                 <h2 className="section-title">
@@ -1289,28 +1411,28 @@ const PhotographyBanner: React.FC = () => {
               </div>
               <div className="benefits-grid">
                 <div className="benefit-item">
-                  <div className="benefit-icon">!</div>
+                  <div className="benefit-icon"><ExclamationTriangleIcon className="w-8 h-8" /></div>
                   <h3 className="benefit-title">Overwhelmed Customer Service</h3>
                   <p className="benefit-description">
                     Manual responses can&apos;t keep up with customer demand, leading to frustrated clients and lost opportunities
                   </p>
                 </div>
                 <div className="benefit-item">
-                  <div className="benefit-icon">⏱</div>
+                  <div className="benefit-icon"><ClockIcon className="w-8 h-8" /></div>
                   <h3 className="benefit-title">Inconsistent Response Times</h3>
                   <p className="benefit-description">
                     Without automation, your response quality varies by staff availability and workload
                   </p>
                 </div>
                 <div className="benefit-item">
-                  <div className="benefit-icon">↗</div>
+                  <div className="benefit-icon"><ArrowTrendingUpIcon className="w-8 h-8" /></div>
                   <h3 className="benefit-title">Scaling Bottlenecks</h3>
                   <p className="benefit-description">
                     Growth is limited by your ability to hire and train staff, creating expensive operational constraints
                   </p>
                 </div>
                 <div className="benefit-item">
-                  <div className="benefit-icon">$</div>
+                  <div className="benefit-icon"><CurrencyDollarIcon className="w-8 h-8" /></div>
                   <h3 className="benefit-title">Lost Revenue</h3>
                   <p className="benefit-description">
                     Competitors offer 24/7 instant responses while you&apos;re still recruiting and training new staff
@@ -1321,32 +1443,35 @@ const PhotographyBanner: React.FC = () => {
           </section>
 
           {/* Solution Section */}
-          <section className="professional-section darker">
+          <section 
+            className={`professional-section darker scroll-section slide-left ${visibleSections.has('solution') ? 'visible' : ''}`}
+            data-section="solution"
+          >
             <div className="section-container">
               <div className="benefits-grid">
                 <div className="benefit-item">
-                  <div className="benefit-icon">24/7</div>
+                  <div className="benefit-icon"><Clock24Icon className="w-8 h-8" /></div>
                   <h3 className="benefit-title">24/7 INTELLIGENT INTERACTIONS</h3>
                   <p className="benefit-description">
                     Automated customer interactions without human intervention, providing consistent quality around the clock
                   </p>
                 </div>
                 <div className="benefit-item">
-                  <div className="benefit-icon">∞</div>
+                  <div className="benefit-icon"><ArrowPathIcon className="w-8 h-8" /></div>
                   <h3 className="benefit-title">SEAMLESS INTEGRATION</h3>
                   <p className="benefit-description">
                     Connect with your existing business processes and tools without disrupting current workflows
                   </p>
                 </div>
                 <div className="benefit-item">
-                  <div className="benefit-icon">AI</div>
+                  <div className="benefit-icon"><CpuChipIcon className="w-8 h-8" /></div>
                   <h3 className="benefit-title">CONTEXT-AWARE RESPONSES</h3>
                   <p className="benefit-description">
                     AI that understands customer intent and history, delivering personalized experiences every time
                   </p>
                 </div>
                 <div className="benefit-item">
-                  <div className="benefit-icon">∞</div>
+                  <div className="benefit-icon"><ArrowTrendingUpIcon className="w-8 h-8" /></div>
                   <h3 className="benefit-title">SCALABLE GROWTH</h3>
                   <p className="benefit-description">
                     Solutions that grow with your business needs without the overhead of constant hiring and training
@@ -1366,7 +1491,10 @@ const PhotographyBanner: React.FC = () => {
           </section>
 
           {/* Process Section */}
-          <section className="professional-section dark">
+          <section 
+            className={`professional-section dark scroll-section slide-right ${visibleSections.has('process') ? 'visible' : ''}`}
+            data-section="process"
+          >
             <div className="section-container">
               <div className="section-content">
                 <h2 className="section-title">
@@ -1406,7 +1534,10 @@ const PhotographyBanner: React.FC = () => {
           </section>
 
           {/* Competitive Advantages Section */}
-          <section className="professional-section darker">
+          <section 
+            className={`professional-section darker scroll-section scale-up ${visibleSections.has('advantages') ? 'visible' : ''}`}
+            data-section="advantages"
+          >
             <div className="section-container">
               <div className="advantages-grid">
                 <div className="advantage-item">
@@ -1450,7 +1581,10 @@ const PhotographyBanner: React.FC = () => {
           </section>
 
           {/* Meet Our Team Section */}
-          <section className="professional-section dark">
+          <section 
+            className={`professional-section dark scroll-section fade-up ${visibleSections.has('team') ? 'visible' : ''}`}
+            data-section="team"
+          >
             <div className="section-container">
               <div className="section-content">
                 <h2 className="section-title">
@@ -1473,10 +1607,10 @@ const PhotographyBanner: React.FC = () => {
                     <p className="member-position">CEO</p>
                     <div className="member-links">
                       <a href="mailto:[email]" className="member-link" aria-label="Email CEO">
-                        <span className="link-icon">✉</span>
+                        <span className="link-icon"><EnvelopeIcon className="w-4 h-4" /></span>
                       </a>
                       <a href="https://linkedin.com/in/[linkedin]" className="member-link" aria-label="LinkedIn Profile">
-                        <span className="link-icon">in</span>
+                        <span className="link-icon"><BuildingOffice2Icon className="w-4 h-4" /></span>
                       </a>
                     </div>
                   </div>
@@ -1492,10 +1626,10 @@ const PhotographyBanner: React.FC = () => {
                     <p className="member-position">CTO</p>
                     <div className="member-links">
                       <a href="mailto:[email]" className="member-link" aria-label="Email CTO">
-                        <span className="link-icon">✉</span>
+                        <span className="link-icon"><EnvelopeIcon className="w-4 h-4" /></span>
                       </a>
                       <a href="https://linkedin.com/in/[linkedin]" className="member-link" aria-label="LinkedIn Profile">
-                        <span className="link-icon">in</span>
+                        <span className="link-icon"><BuildingOffice2Icon className="w-4 h-4" /></span>
                       </a>
                     </div>
                   </div>
@@ -1511,10 +1645,10 @@ const PhotographyBanner: React.FC = () => {
                     <p className="member-position">COO</p>
                     <div className="member-links">
                       <a href="mailto:[email]" className="member-link" aria-label="Email COO">
-                        <span className="link-icon">✉</span>
+                        <span className="link-icon"><EnvelopeIcon className="w-4 h-4" /></span>
                       </a>
                       <a href="https://linkedin.com/in/[linkedin]" className="member-link" aria-label="LinkedIn Profile">
-                        <span className="link-icon">in</span>
+                        <span className="link-icon"><BuildingOffice2Icon className="w-4 h-4" /></span>
                       </a>
                     </div>
                   </div>
@@ -1524,7 +1658,10 @@ const PhotographyBanner: React.FC = () => {
           </section>
 
           {/* CTA Section */}
-          <section className="cta-section">
+          <section 
+            className={`cta-section scroll-section scale-up ${visibleSections.has('cta') ? 'visible' : ''}`}
+            data-section="cta"
+          >
             <div className="cta-container">
               <h2 className="cta-title text-center">Ready to Start?</h2>
               <p className="cta-subtitle">

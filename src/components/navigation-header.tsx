@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 
 interface NavigationHeaderProps {
@@ -15,6 +15,7 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
   onSignUpClick,
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   const handleBrandClick = () => {
     window.location.href = "/"
@@ -44,6 +45,17 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
     setIsMobileMenuOpen(!isMobileMenuOpen)
   }
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY
+      const headerHeight = 80 // Height of the header
+      setIsScrolled(scrollPosition > headerHeight)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <>
       <style>{`
@@ -59,6 +71,16 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
           border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.3s ease;
+        }
+        
+        .navigation-header.scrolled {
+          background: rgba(15, 20, 25, 0.95);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border-bottom: 1px solid rgba(122, 40, 138, 0.3);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+          transform: translateY(-2px);
         }
         
         .nav-container {
@@ -259,7 +281,7 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
         }
       `}</style>
 
-      <header className={`navigation-header ${className}`}>
+      <header className={`navigation-header ${isScrolled ? 'scrolled' : ''} ${className}`}>
         <div className="nav-container">
           {/* Brand Section */}
           <div className="brand" onClick={handleBrandClick}>
